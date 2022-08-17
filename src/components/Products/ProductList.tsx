@@ -28,11 +28,13 @@ const ProductList = (props: Props) => {
                             type,
                             capacity,
                             price,
+                            image,
                         }: ProductProps,
                         i
                     ) => (
                         <Grid item xs={12} sm={6} md={4} key={id}>
                             <ProductListItem
+                                image={image}
                                 name={name}
                                 description={description}
                                 capacity={capacity}

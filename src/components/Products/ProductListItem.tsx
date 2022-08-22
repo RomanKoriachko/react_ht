@@ -7,6 +7,7 @@ import {
     TextField,
 } from '@mui/material'
 import './ProductListItem.scss'
+import { green } from '@mui/material/colors'
 
 export type ProductProps = {
     id?: number
@@ -20,11 +21,13 @@ export type ProductProps = {
 
 type State = {
     count: number
+    color: string
 }
 
 class ProductListItem extends Component<ProductProps, State> {
     state = {
         count: 1,
+        color: 'green',
     }
 
     onDecrementClick = () => {
@@ -36,6 +39,11 @@ class ProductListItem extends Component<ProductProps, State> {
         this.setState((prevState: State) => ({
             count: prevState.count + 1,
         }))
+    }
+    changeColor = () => {
+        this.setState({
+            color: 'red',
+        })
     }
 
     render() {
@@ -72,6 +80,8 @@ class ProductListItem extends Component<ProductProps, State> {
                             +
                         </Button>
                     </div>
+                    <p>Color: {this.state.color}</p>
+                    <button onClick={this.changeColor}>clange color</button>
                 </CardContent>
                 <CardActions className="btn-wrap">
                     <Button variant="contained">Add to cart</Button>

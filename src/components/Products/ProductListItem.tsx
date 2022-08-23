@@ -22,27 +22,76 @@ export type ProductProps = {
 type State = {
     count: number
     color: string
+    isDecrementDisabled: boolean
+    isIncrementDisabled: boolean
 }
 
 class ProductListItem extends Component<ProductProps, State> {
     state = {
         count: 1,
         color: 'green',
+        isDecrementDisabled: true,
+        isIncrementDisabled: false,
     }
 
     onDecrementClick = () => {
         this.setState((prevState: State) => ({
             count: prevState.count - 1,
         }))
+        this.setState((prevState: State) => {
+            if (prevState.count <= 1) {
+                this.setState({
+                    isDecrementDisabled: true,
+                    isIncrementDisabled: false,
+                })
+            } else if (prevState.count >= 10) {
+                this.setState({
+                    isDecrementDisabled: false,
+                    isIncrementDisabled: true,
+                })
+            } else {
+                this.setState({
+                    isDecrementDisabled: false,
+                    isIncrementDisabled: false,
+                })
+            }
+        })
     }
     onIncrementClick = () => {
         this.setState((prevState: State) => ({
             count: prevState.count + 1,
         }))
+        this.setState((prevState: State) => {
+            if (prevState.count <= 1) {
+                this.setState({
+                    isDecrementDisabled: true,
+                    isIncrementDisabled: false,
+                })
+            } else if (prevState.count >= 10) {
+                this.setState({
+                    isDecrementDisabled: false,
+                    isIncrementDisabled: true,
+                })
+            } else {
+                this.setState({
+                    isDecrementDisabled: false,
+                    isIncrementDisabled: false,
+                })
+            }
+        })
     }
+
     changeColor = () => {
-        this.setState({
-            color: 'red',
+        this.setState((prevState: State) => {
+            if (prevState.color === 'green') {
+                this.setState({
+                    color: 'red',
+                })
+            } else {
+                this.setState({
+                    color: 'green',
+                })
+            }
         })
     }
 
@@ -65,6 +114,7 @@ class ProductListItem extends Component<ProductProps, State> {
                         <Button
                             variant="contained"
                             onClick={this.onDecrementClick}
+                            disabled={this.state.isDecrementDisabled}
                         >
                             -
                         </Button>
@@ -76,6 +126,7 @@ class ProductListItem extends Component<ProductProps, State> {
                         <Button
                             variant="contained"
                             onClick={this.onIncrementClick}
+                            disabled={this.state.isIncrementDisabled}
                         >
                             +
                         </Button>

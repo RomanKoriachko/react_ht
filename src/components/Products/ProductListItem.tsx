@@ -7,7 +7,6 @@ import {
     TextField,
 } from '@mui/material'
 import './ProductListItem.scss'
-import { green } from '@mui/material/colors'
 
 export type ProductProps = {
     id?: number

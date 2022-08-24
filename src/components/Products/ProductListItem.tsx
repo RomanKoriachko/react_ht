@@ -35,33 +35,34 @@ const ProductListItem = ({
         setCount((prevState: number) => prevState - 1)
     }
 
-    const [color, setColor] = useState<string>('green')
-    const changeColor = () => {
-        setColor((prevState: string) => (prevState === 'red' ? 'green' : 'red'))
-    }
-
     return (
         <Card>
             <CardContent>
                 <div className="product-img">
                     <img src={image} alt="" />
                 </div>
-                <h4 className={`product-title ${color}`}>{name}</h4>
+                <h4 className="product-title">{name}</h4>
                 <div className="product-description">{description}</div>
                 <div className="product-features">Type: {type}</div>
                 <div className="product-features">Capacity: {capacity} Gb</div>
                 <div className="product-price">$ {price}</div>
                 <div className="product-quantity">
-                    <Button variant="contained" onClick={onDecrementClick}>
+                    <Button
+                        variant="contained"
+                        onClick={onDecrementClick}
+                        disabled={count <= 1}
+                    >
                         -
                     </Button>
                     <TextField size="small" value={count} variant="outlined" />
-                    <Button variant="contained" onClick={onIncrementClick}>
+                    <Button
+                        variant="contained"
+                        onClick={onIncrementClick}
+                        disabled={count >= 10}
+                    >
                         +
                     </Button>
                 </div>
-                <p>Color: {color}</p>
-                <button onClick={changeColor}>Change color</button>
             </CardContent>
             <CardActions className="btn-wrap">
                 <Button variant="contained">Add to cart</Button>

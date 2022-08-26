@@ -14,10 +14,10 @@ const App = () => {
         totalPrice: 0,
     })
 
-    const addProductToCart = () => {
+    const addProductToCart = (productCount: number, productPrice: number) => {
         setCartData((prevState: CartDataProps) => ({
-            totalCount: prevState.totalCount + 1,
-            totalPrice: prevState.totalPrice + 1000,
+            totalCount: prevState.totalCount + productCount,
+            totalPrice: prevState.totalPrice + productPrice * productCount,
         }))
     }
 
@@ -25,8 +25,7 @@ const App = () => {
         <>
             <CssBaseline />
             <Header cartData={cartData} />
-            <button onClick={() => addProductToCart()}>Add to cart</button>
-            <Main />
+            <Main addProductToCart={addProductToCart} />
         </>
     )
 }

@@ -16,6 +16,7 @@ export type ProductProps = {
     capacity: number
     price: number
     image: string
+    addProductToCart?: (productCount: number, productPrice: number) => void
 }
 
 const ProductListItem = ({
@@ -25,6 +26,7 @@ const ProductListItem = ({
     capacity,
     price,
     image,
+    addProductToCart,
 }: ProductProps) => {
     const [count, setCount] = useState<number>(1)
 
@@ -65,7 +67,12 @@ const ProductListItem = ({
                 </div>
             </CardContent>
             <CardActions className="btn-wrap">
-                <Button variant="contained">Add to cart</Button>
+                <Button
+                    variant="contained"
+                    onClick={() => addProductToCart?.(count, price)}
+                >
+                    Add to cart
+                </Button>
             </CardActions>
         </Card>
     )

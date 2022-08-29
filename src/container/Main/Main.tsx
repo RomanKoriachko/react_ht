@@ -2,15 +2,13 @@ import React from 'react'
 import { Container } from '@mui/material'
 import ProductList from 'components/Products/ProductList'
 
-type Props = {
-    addProductToCart: (productCount: number, productPrice: number) => void
-}
+type Props = {}
 
-const Main = ({ addProductToCart }: Props) => {
+const Main = (props: Props) => {
     return (
         <>
             <Container>
-                <ProductList addProductToCart={addProductToCart} />
+                <ProductList />
             </Container>
         </>
     )

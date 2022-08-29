@@ -3,27 +3,24 @@ import CssBaseline from '@mui/material/CssBaseline'
 import Header from 'container/Header/Header'
 import Main from 'container/Main/Main'
 
-type CartDataProps = {
-    totalCount: number
-    totalPrice: number
+type ProductsInCartProps = {
+    [id: number]: number
 }
 
 const App = () => {
-    const [cartData, setCartData] = useState<CartDataProps>({
-        totalCount: 0,
-        totalPrice: 0,
+    const [productsInCart, setProductsInCart] = useState<ProductsInCartProps>({
+        1: 1,
+        2: 1,
     })
 
-    const addProductToCart = (count: number, price: number) =>
-        setCartData((prevState: CartDataProps) => ({
-            totalCount: prevState.totalCount + count,
-            totalPrice: prevState.totalPrice + count * price,
-        }))
+    const addProductToCart = () => {
+        console.log('test')
+    }
 
     return (
         <>
             <CssBaseline />
-            <Header cartData={cartData} />
+            <Header productsInCart={productsInCart} />
             <Main addProductToCart={addProductToCart} />
         </>
     )

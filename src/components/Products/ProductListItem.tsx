@@ -9,17 +9,18 @@ import {
 import './ProductListItem.scss'
 
 type ProductProps = {
-    id?: number
+    id: number
     name: string
     description: string
     type: string
     capacity: number
     price: number
     image: string
-    addProductToCart: (count: number, price: number) => void
+    addProductToCart: (id: number, count: number) => void
 }
 
 const ProductListItem = ({
+    id,
     name,
     description,
     type,
@@ -69,7 +70,7 @@ const ProductListItem = ({
             <CardActions className="btn-wrap">
                 <Button
                     variant="contained"
-                    onClick={() => addProductToCart(count, price)}
+                    onClick={() => addProductToCart(id, count)}
                 >
                     Add to cart
                 </Button>

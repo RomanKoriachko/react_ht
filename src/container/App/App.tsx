@@ -9,15 +9,14 @@ type ProductsInCartProps = {
 }
 
 const App = () => {
-    const [productsInCart, setProductsInCart] = useState<ProductsInCartProps>({
-        1: 1,
-        2: 1,
-    })
+    const [productsInCart, setProductsInCart] = useState<ProductsInCartProps>(
+        {}
+    )
 
-    const addProductToCart = (count: number, id: number) => {
+    const addProductToCart = (id: number, count: number) => {
         setProductsInCart((prevState: ProductsInCartProps) => ({
-            ...productsInCart,
-            [id]: prevState[id] + count,
+            ...prevState,
+            [id]: (prevState[id] || 0) + count,
         }))
     }
 
@@ -25,7 +24,6 @@ const App = () => {
         <>
             <CssBaseline />
             <Header productsInCart={productsInCart} />
-            <button onClick={() => addProductToCart(5, 2)}>Add To Cart</button>
             <Main addProductToCart={addProductToCart} />
         </>
     )

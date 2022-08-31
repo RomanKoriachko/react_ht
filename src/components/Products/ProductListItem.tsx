@@ -9,14 +9,14 @@ import {
 import './ProductListItem.scss'
 
 type ProductProps = {
-    id?: number
+    id: number
     name: string
     description: string
     type: string
     capacity: number
     price: number
     image: string
-    addProductToCart: (count: number, price: number) => void
+    addProductToCart: (id: number, count: number) => void
 }
 
 const ProductListItem = ({
@@ -26,6 +26,7 @@ const ProductListItem = ({
     capacity,
     price,
     image,
+    id,
     addProductToCart,
 }: ProductProps) => {
     const [count, setCount] = useState<number>(1)
@@ -40,7 +41,7 @@ const ProductListItem = ({
     return (
         <Card>
             <CardContent>
-                <div className="product-img">
+                <div className="product-img" key={id}>
                     <img src={image} alt="" />
                 </div>
                 <h4 className="product-title">{name}</h4>
@@ -69,7 +70,7 @@ const ProductListItem = ({
             <CardActions className="btn-wrap">
                 <Button
                     variant="contained"
-                    onClick={() => addProductToCart(count, price)}
+                    onClick={() => addProductToCart(id, count)}
                 >
                     Add to cart
                 </Button>

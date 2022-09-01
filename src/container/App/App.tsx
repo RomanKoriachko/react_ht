@@ -24,7 +24,10 @@ const App = () => {
         <>
             <CssBaseline />
             <Header productsInCart={productsInCart} />
-            <Main addProductToCart={addProductToCart} />
+            <Main
+                addProductToCart={addProductToCart}
+                productsInCart={productsInCart}
+            />
         </>
     )
 }

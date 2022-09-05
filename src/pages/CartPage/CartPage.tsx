@@ -24,7 +24,7 @@ const CartPage = ({
                 <div key={productId}>
                     {productsObject[parseInt(productId)].name}:{' '}
                     {productsInCart[parseInt(productId)]} :{' '}
-                    {productsObject[parseInt(productId)].price}
+                    {productsObject[parseInt(productId)].price} $
                 </div>
             ))}
             <div>

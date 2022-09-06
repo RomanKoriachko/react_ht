@@ -7,6 +7,7 @@ import {
     TextField,
 } from '@mui/material'
 import './ProductListItem.scss'
+import Quantity from 'components/Quantity/Quantity'
 
 type ProductProps = {
     id: number
@@ -50,21 +51,11 @@ const ProductListItem = ({
                 <div className="product-features">Capacity: {capacity} Gb</div>
                 <div className="product-price">$ {price}</div>
                 <div className="product-quantity">
-                    <Button
-                        variant="contained"
-                        onClick={onDecrementClick}
-                        disabled={count <= 1}
-                    >
-                        -
-                    </Button>
-                    <TextField size="small" value={count} variant="outlined" />
-                    <Button
-                        variant="contained"
-                        onClick={onIncrementClick}
-                        disabled={count >= 10}
-                    >
-                        +
-                    </Button>
+                    <Quantity
+                        increment={onIncrementClick}
+                        decrement={onDecrementClick}
+                        count={count}
+                    />
                 </div>
             </CardContent>
             <CardActions className="btn-wrap">

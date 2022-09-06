@@ -26,6 +26,19 @@ const App = () => {
         )
     }
 
+    const incrementInCartExtended = (id: number) => {
+        setProductsInCart((prevState: ProductsInCartProps) => ({
+            ...prevState,
+            [id]: prevState[id] + 1,
+        }))
+    }
+    const decrementInCartExtended = (id: number) => {
+        setProductsInCart((prevState: ProductsInCartProps) => ({
+            ...prevState,
+            [id]: prevState[id] - 1,
+        }))
+    }
+
     return (
         <>
             <CssBaseline />
@@ -34,6 +47,8 @@ const App = () => {
                 addProductToCart={addProductToCart}
                 productsInCart={productsInCart}
                 removeProductFromCart={removeProductFromCart}
+                incrementInCartExtended={incrementInCartExtended}
+                decrementInCartExtended={decrementInCartExtended}
             />
         </>
     )

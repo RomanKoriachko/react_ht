@@ -7,12 +7,21 @@ import { omit } from 'lodash'
 type ProductsInCartProps = {
     [id: number]: number
 }
+type ProductsLikeStateProps = {
+    [id: number]: boolean
+}
 
 const App = () => {
     const [productsInCart, setProductsInCart] = useState<ProductsInCartProps>(
         {}
     )
 
+    const [productslikeState, setProductslikeState] =
+        useState<ProductsLikeStateProps>({
+            1: true,
+            2: true,
+        })
+    console.log(productslikeState)
     const addProductToCart = (id: number, count: number) => {
         setProductsInCart((prevState: ProductsInCartProps) => ({
             ...prevState,
@@ -42,6 +51,7 @@ const App = () => {
                 productsInCart={productsInCart}
                 removeProductFromCart={removeProductFromCart}
                 changeProductQuantity={changeProductQuantity}
+                productslikeState={productslikeState}
             />
         </>
     )

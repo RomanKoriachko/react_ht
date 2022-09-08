@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Button, Card, CardActions, CardContent } from '@mui/material'
 import './ProductListItem.scss'
 import Quantity from 'components/Quantity/Quantity'
@@ -14,6 +14,7 @@ type ProductProps = {
     price: number
     image: string
     addProductToCart: (id: number, count: number) => void
+    onLikeClick: (id: number, isLiked: boolean) => void
     isLiked?: boolean
 }
 
@@ -26,6 +27,7 @@ const ProductListItem = ({
     price,
     image,
     addProductToCart,
+    onLikeClick,
     isLiked = false,
 }: ProductProps) => {
     const [count, setCount] = useState<number>(1)
@@ -43,7 +45,10 @@ const ProductListItem = ({
                 <div className="product-img">
                     <img src={image} alt="" />
                 </div>
-                <Button variant="outlined">
+                <Button
+                    variant="outlined"
+                    onClick={() => onLikeClick(id, isLiked)}
+                >
                     {isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
                 </Button>
                 <h4 className="product-title">{name}</h4>

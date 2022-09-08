@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import CssBaseline from '@mui/material/CssBaseline'
 import Header from 'container/Header/Header'
 import Main from 'container/Main/Main'
@@ -17,11 +17,22 @@ const App = () => {
     )
 
     const [productslikeState, setProductslikeState] =
-        useState<ProductsLikeStateProps>({
-            1: true,
-            2: true,
-        })
-    console.log(productslikeState)
+        useState<ProductsLikeStateProps>({})
+
+    const onLikeClick = (id: number, isLiked: boolean) => {
+        if (isLiked === false) {
+            setProductslikeState((prevState: ProductsLikeStateProps) => ({
+                ...prevState,
+                [id]: true,
+            }))
+        } else {
+            setProductslikeState((prevState: ProductsLikeStateProps) => ({
+                ...prevState,
+                [id]: false,
+            }))
+        }
+    }
+
     const addProductToCart = (id: number, count: number) => {
         setProductsInCart((prevState: ProductsInCartProps) => ({
             ...prevState,
@@ -52,6 +63,7 @@ const App = () => {
                 removeProductFromCart={removeProductFromCart}
                 changeProductQuantity={changeProductQuantity}
                 productslikeState={productslikeState}
+                onLikeClick={onLikeClick}
             />
         </>
     )

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Grid, Typography } from '@mui/material'
 import ProductListItem from './ProductListItem'
 import productsArray from './productsArray'
@@ -8,6 +7,7 @@ type Props = {
         [id: number]: boolean
     }
     addProductToCart: (id: number, count: number) => void
+    onLikeClick: (id: number, isLiked: boolean) => void
 }
 
 type ProductProps = {
@@ -20,7 +20,11 @@ type ProductProps = {
     image: string
 }
 
-const ProductList = ({ addProductToCart, productslikeState }: Props) => {
+const ProductList = ({
+    addProductToCart,
+    productslikeState,
+    onLikeClick,
+}: Props) => {
     return (
         <>
             <Typography variant="h4" textAlign="center" margin={3}>
@@ -54,6 +58,7 @@ const ProductList = ({ addProductToCart, productslikeState }: Props) => {
                                 price={price}
                                 addProductToCart={addProductToCart}
                                 isLiked={productslikeState[id]}
+                                onLikeClick={onLikeClick}
                             />
                         </Grid>
                     )

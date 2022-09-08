@@ -12,7 +12,6 @@ const Quantity = ({
     count,
     onDecrementClick,
     onIncrementClick,
-    removeProductFromCart,
     minCount = 1,
 }: Props) => {
     return (

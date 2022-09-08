@@ -1,4 +1,3 @@
-import React from 'react'
 import { Container } from '@mui/material'
 import ProductList from 'components/Products/ProductList'
 import { Routes, Route } from 'react-router-dom'
@@ -15,6 +14,7 @@ type Props = {
     addProductToCart: (id: number, count: number) => void
     removeProductFromCart: (id: number) => void
     changeProductQuantity: (id: number, count: number) => void
+    onLikeClick: (id: number, isLiked: boolean) => void
 }
 
 const Main = ({
@@ -23,6 +23,7 @@ const Main = ({
     removeProductFromCart,
     changeProductQuantity,
     productslikeState,
+    onLikeClick,
 }: Props) => {
     return (
         <>
@@ -35,6 +36,7 @@ const Main = ({
                                 <ProductList
                                     addProductToCart={addProductToCart}
                                     productslikeState={productslikeState}
+                                    onLikeClick={onLikeClick}
                                 />
                                 <Reviews />
                             </>

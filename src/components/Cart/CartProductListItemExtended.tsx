@@ -41,13 +41,7 @@ const CartProductListItemExtended = ({
                         />
                     </div>
                     <div>
-                        <Button variant="outlined">
-                            {isLiked ? (
-                                <FavoriteIcon />
-                            ) : (
-                                <FavoriteBorderIcon />
-                            )}
-                        </Button>
+                        {isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
                     </div>
                     <div>{product.name}</div>
                     <p>Price for one item: {product.price} $</p>

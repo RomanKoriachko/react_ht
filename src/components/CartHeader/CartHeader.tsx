@@ -1,14 +1,12 @@
 import React from 'react'
 import CartTotal from 'components/Cart/CartTotal'
 import CartProductList from 'components/Cart/CartProductList'
+import { useAppSelector } from 'redux/hooks'
 
-type Props = {
-    productsInCart: {
-        [id: number]: number
-    }
-}
+type Props = {}
 
-const CartHeader = ({ productsInCart }: Props) => {
+const CartHeader = () => {
+    const productsInCart = useAppSelector((state) => state.productsInCart)
     return (
         <div>
             <CartProductList productsInCart={productsInCart} />

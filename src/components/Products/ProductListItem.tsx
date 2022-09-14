@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Button, Card, CardActions, CardContent } from '@mui/material'
 import './ProductListItem.scss'
 import Quantity from 'components/Quantity/Quantity'
@@ -6,6 +6,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { addLike, removeLike } from 'redux/likeReducer'
+import { addProductToCart } from 'redux/cartReducer'
 
 type ProductProps = {
     id: number
@@ -15,7 +16,6 @@ type ProductProps = {
     capacity: number
     price: number
     image: string
-    addProductToCart: (id: number, count: number) => void
 }
 
 const ProductListItem = ({
@@ -26,7 +26,6 @@ const ProductListItem = ({
     capacity,
     price,
     image,
-    addProductToCart,
 }: ProductProps) => {
     const [count, setCount] = useState<number>(1)
 
@@ -70,7 +69,7 @@ const ProductListItem = ({
             <CardActions className="btn-wrap">
                 <Button
                     variant="contained"
-                    onClick={() => addProductToCart(id, count)}
+                    onClick={() => dispatch(addProductToCart({ id, count }))}
                 >
                     Add to cart
                 </Button>

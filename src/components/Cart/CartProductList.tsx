@@ -5,6 +5,7 @@ import productsArray, {
     Product,
 } from 'components/Products/productsArray'
 import CartProductListItem from './CartProductListItem'
+import { useAppSelector } from 'redux/hooks'
 
 type Props = {
     productsInCart: {
@@ -25,6 +26,9 @@ const CartProductList = ({
     removeProductFromCart,
     changeProductQuantity,
 }: Props) => {
+    // console.log(productsInCart)
+    // console.log(cartCount)
+
     return (
         <>
             {keys(productsInCart).map((productId) => (

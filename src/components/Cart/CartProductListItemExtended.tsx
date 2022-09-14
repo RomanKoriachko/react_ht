@@ -5,6 +5,8 @@ import Quantity from 'components/Quantity/Quantity'
 import { useAppSelector } from 'redux/hooks'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import { useDispatch } from 'react-redux'
+import { decrementItem, incrementItem, removeItem } from 'redux/cartReducer'
 
 type Props = {
     productCount: number
@@ -22,6 +24,7 @@ const CartProductListItemExtended = ({
     const isLiked = useAppSelector(
         (state) => state.productsLikeState[product.id]
     )
+    const dispatch = useDispatch()
     return (
         <Grid item xs={12} sm={6}>
             <Card>
@@ -50,23 +53,20 @@ const CartProductListItemExtended = ({
                         count={productCount}
                         onDecrementClick={() =>
                             productCount === 1
-                                ? removeProductFromCart(product.id)
-                                : changeProductQuantity(
-                                      product.id,
-                                      productCount - 1
-                                  )
+                                ? dispatch(removeItem(product.id))
+                                : dispatch(decrementItem(product.id))
                         }
                         onIncrementClick={() =>
-                            changeProductQuantity(product.id, productCount + 1)
+                            dispatch(incrementItem(product.id))
                         }
                         removeProductFromCart={() =>
-                            removeProductFromCart(product.id)
+                            dispatch(removeItem(product.id))
                         }
                         minCount={0}
                     />
                     <Button
                         variant="outlined"
-                        onClick={() => removeProductFromCart(product.id)}
+                        onClick={() => dispatch(removeItem(product.id))}
                     >
                         <DeleteIcon />
                     </Button>

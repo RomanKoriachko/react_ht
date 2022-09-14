@@ -6,6 +6,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { addLike, removeLike } from 'redux/likeReducer'
+import { addItem } from 'redux/cartReducer'
 
 type ProductProps = {
     id: number
@@ -70,7 +71,7 @@ const ProductListItem = ({
             <CardActions className="btn-wrap">
                 <Button
                     variant="contained"
-                    onClick={() => addProductToCart(id, count)}
+                    onClick={() => dispatch(addItem(id))}
                 >
                     Add to cart
                 </Button>

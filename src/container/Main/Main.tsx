@@ -3,6 +3,7 @@ import ProductList from 'components/Products/ProductList'
 import { Routes, Route } from 'react-router-dom'
 import CartPage from 'pages/CartPage/CartPage'
 import Reviews from 'components/Reviews/Reviews'
+import CheckoutPage from 'pages/ChackoutPage/CheckoutPage'
 
 const Main = () => {
     return (
@@ -19,6 +20,7 @@ const Main = () => {
                         }
                     />
                     <Route path="/cart" element={<CartPage />} />
+                    <Route path="checkout" element={<CheckoutPage />} />
                 </Routes>
             </Container>
         </>

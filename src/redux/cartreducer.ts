@@ -5,7 +5,6 @@ type State = {
     [id: number]:number
 }
 
-
 const initialState:State = {
     1:5,
     2:5,

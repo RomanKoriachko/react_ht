@@ -5,21 +5,9 @@ import { Routes, Route } from 'react-router-dom'
 import CartPage from 'pages/CartPage/CartPage'
 import Reviews from 'components/Reviews/Reviews'
 
-type Props = {
-    productsInCart: {
-        [id: number]: number
-    }
-    addProductToCart: (id: number, count: number) => void
-    removeProductFromCart: (id: number) => void
-    changeProductQuantity: (id: number, count: number) => void
-}
+type Props = {}
 
-const Main = ({
-    addProductToCart,
-    productsInCart,
-    removeProductFromCart,
-    changeProductQuantity,
-}: Props) => {
+const Main = (props: Props) => {
     return (
         <>
             <Container>
@@ -28,23 +16,12 @@ const Main = ({
                         path="/"
                         element={
                             <>
-                                <ProductList
-                                    addProductToCart={addProductToCart}
-                                />
+                                <ProductList />
                                 <Reviews />
                             </>
                         }
                     />
-                    <Route
-                        path="/cart"
-                        element={
-                            <CartPage
-                                productsInCart={productsInCart}
-                                removeProductFromCart={removeProductFromCart}
-                                changeProductQuantity={changeProductQuantity}
-                            />
-                        }
-                    />
+                    <Route path="/cart" element={<CartPage />} />
                 </Routes>
             </Container>
         </>
